@@ -1,11 +1,20 @@
 ﻿#pragma strict
 
+public class Attack
+{
+	public var damage : int;
+	public var prep : float;
+	public var recovery : float;
+	public var reach : float;
+}
+
 public var health : float;
 public var armor : float;
 public var speed : float;
-public var lightAttackDamage : float;
-public var mediumAttackDamage : float;
-public var heavyAttackDamage : float;
+public var lightAttack : Attack;
+public var mediumAttack : Attack;
+public var heavyAttack : Attack;
+public var cooldown : float;
 
 public var jumpPower : float;
 
@@ -27,6 +36,7 @@ function Update () {
 		GetComponent(Rigidbody).velocity.y = jumpPower;
 		isGrounded = false;
 	}
+	if(cooldown > 0) cooldown -= Time.deltaTime;
 }
 
 function OnCollisionEnter ()
@@ -34,34 +44,37 @@ function OnCollisionEnter ()
 	isGrounded = true;
 }
 
-function Attack (damage : float, delay : float, push : float)
+function Attack (attack : Attack, armorValue : float, push : float)
 {
-	WaitForSeconds(delay);
+	armor = armorValue;
+	cooldown = attack.recovery;
+	yield WaitForSeconds(attack.prep);
 	var hit : RaycastHit;
-	if(Physics.Raycast(transform.position,transform.forward, hit, 1))
+	if(Physics.Raycast(transform.position,transform.forward, hit, attack.reach))
 	{
 		print("Pow");
-		hit.collider.SendMessage("Damage", damage);
+		hit.collider.SendMessage("Damage", attack.damage);
 		hit.collider.GetComponent(Rigidbody).AddForce(transform.forward * push, ForceMode.Impulse);
 	}
+	armor = 0;
 }
 
 function LightAttack()
 {
-	Attack(lightAttackDamage,0.5, 1);
+	if(cooldown <= 0) Attack(lightAttack, 20, 1);
 }
 
 function MediumAttack()
 {
-	Attack(mediumAttackDamage,0.75, 1);
+	if(cooldown <= 0) Attack(mediumAttack, 20, 1);
 }
 
 function HeavyAttack()
 {
-	Attack(heavyAttackDamage,1, 1);
+	if(cooldown <= 0) Attack(heavyAttack, 20, 1);
 }
 
-function Damage (amount : float)
+function Damage (amount : int)
 {
 	health -= amount;
 }
