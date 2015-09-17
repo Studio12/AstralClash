@@ -20,7 +20,7 @@ public var jumpPower : float;
 
 public var direction : float;
 @HideInInspector
-public var jumping : boolean = false;
+public var jumping : float;
 
 private var isGrounded : boolean = true;
 
@@ -31,10 +31,12 @@ function Start () {
 function Update () {
 	transform.position.x += direction * speed * 0.25;
 	transform.LookAt(transform.position + Vector3(direction,0,0));
-	if(jumping && isGrounded)
+	if(jumping>0)
 	{
+	if(isGrounded){
 		GetComponent(Rigidbody).velocity.y = jumpPower;
 		isGrounded = false;
+		}
 	}
 	if(cooldown > 0) cooldown -= Time.deltaTime;
 }
