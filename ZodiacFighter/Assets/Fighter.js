@@ -4,8 +4,10 @@ public class Attack
 {
 	public var damage : int;
 	public var prep : float;
+	public var projectile : GameObject;
 	public var recovery : float;
 	public var reach : float;
+	public var armor : float;
 }
 
 public var health : float;
@@ -30,31 +32,34 @@ function Start () {
 
 function Update () {
 	transform.position.x += direction * speed * 0.25;
-	transform.LookAt(transform.position + Vector3(direction,0,0));
+	transform.LookAt(transform.position + Vector3(0,0,direction));
 	if(jumping && isGrounded)
 	{
-		GetComponent(Rigidbody).velocity.y = jumpPower;
+		GetComponent(Rigidbody2D).velocity.y = jumpPower;
 		isGrounded = false;
 	}
 	if(cooldown > 0) cooldown -= Time.deltaTime;
+	Debug.DrawLine(transform.position, transform.position + transform.right * 5);
 }
 
-function OnCollisionEnter ()
+function OnCollisionEnter2D ()
 {
 	isGrounded = true;
 }
 
 function Attack (attack : Attack, armorValue : float, push : float)
 {
-	armor = armorValue;
+	print("Whoosh");
+	armor = attack.armor;
 	cooldown = attack.recovery;
 	yield WaitForSeconds(attack.prep);
-	var hit : RaycastHit;
-	if(Physics.Raycast(transform.position,transform.forward, hit, attack.reach))
+	var hit = Physics2D.Raycast(transform.position,transform.right, 5);
+	if(hit.collider != null && hit.collider != gameObject.GetComponent(Collider2D))
 	{
 		print("Pow");
 		hit.collider.SendMessage("Damage", attack.damage);
-		hit.collider.GetComponent(Rigidbody).AddForce(transform.forward * push, ForceMode.Impulse);
+		hit.collider.GetComponent(Rigidbody2D).AddForce(Vector2(direction * push,0), ForceMode2D.Impulse);
+		if(attack.projectile) Instantiate(attack.projectile, transform.position, transform.rotation); 
 	}
 	armor = 0;
 }

@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Fighter.js">
     <Files>
-      <File FileName="Assets\Fighter.js" Line="64" Column="47" />
-      <File FileName="Assets\AI.js" Line="1" Column="1" />
+      <File FileName="Assets\Fighter.js" Line="42" Column="9" />
+      <File FileName="Assets\AI.js" Line="27" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

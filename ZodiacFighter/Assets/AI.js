@@ -4,19 +4,13 @@ private var fighter : Fighter;
 
 public var target : Transform;
 
-private var meshAgent : NavMeshAgent;
-
-
 function Start () {
 	fighter = GetComponent(Fighter);
-	meshAgent = GetComponent(NavMeshAgent);
-	meshAgent.speed = fighter.speed;
 }
 
 function Update () {
-	//fighter.direction = (target.position - transform.position).normalized.x;
-	meshAgent.SetDestination (target.transform.position);
-	if(Physics.Raycast(transform.position,transform.forward, 1.5))
+	fighter.direction = (target.position - transform.position - (1.25 * transform.right)).normalized.x;
+	if(Physics.Raycast(transform.position,transform.right, 1.5))
 	{
 		switch(Random.Range(0,2)) {
 		    case 0:
