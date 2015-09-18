@@ -46,7 +46,7 @@ public class Fighter : MonoBehaviour {
 			isGrounded = false;
 		}
 		if(cooldown > 0) cooldown -= Time.deltaTime;
-		Debug.DrawLine(transform.position, transform.position + transform.right * 5);
+		Debug.DrawLine(transform.position, transform.position + transform.right * 1);
 	}
 
 	void OnCollisionEnter2D ()
@@ -56,22 +56,22 @@ public class Fighter : MonoBehaviour {
 	
 	IEnumerator PerformAttack (Attack attack, float push)
 	{
-		print("Whoosh");
+		print("Whoosh from " + gameObject.name);
 		armor = attack.armor;
 		cooldown = attack.recovery;
 		while (armor > 0) {
 			yield return new WaitForSeconds (attack.prep);
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, transform.right, 5);
 			if (hit.collider != null && hit.collider != gameObject.GetComponent<Collider2D> ()) {
-				print ("Pow");
+				print ("Pow from " + gameObject.name);
 				hit.collider.SendMessage ("Damage", attack.damage);
 				hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
 				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (direction * push, 0), ForceMode2D.Impulse);
-				if (attack.projectile)
-					Instantiate (attack.projectile, transform.position, transform.rotation); 
 			}
+			if (attack.projectile)
+				Instantiate (attack.projectile, transform.position, transform.rotation);
+			armor = 0;
 		}
-		armor = 0;
 	}
 	
 	public void LightAttack()
@@ -86,7 +86,7 @@ public class Fighter : MonoBehaviour {
 	
 	public void HeavyAttack()
 	{
-			if(cooldown <= 0) StartCoroutine(PerformAttack(heavyAttack, 1));
+		if(cooldown <= 0) StartCoroutine(PerformAttack(heavyAttack, 1));
 	}
 	
 	void Damage (float amount)
