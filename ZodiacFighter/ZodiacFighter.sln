@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{DBAD9FA1-1C1A-6040-0065-B957A6B9BCB2}") = "ZodiacFighter", "Assembly-CSharp.csproj", "{B7FDB64F-9AC7-4934-AA63-B44F747FAFB2}"
 EndProject
+Project("{DBAD9FA1-1C1A-6040-0065-B957A6B9BCB2}") = "ZodiacFighter", "Assembly-UnityScript-firstpass.unityproj", "{9D550DC2-090B-8262-2BE6-0075DDF482E7}"
+EndProject
 Project("{DBAD9FA1-1C1A-6040-0065-B957A6B9BCB2}") = "ZodiacFighter", "Assembly-UnityScript.unityproj", "{0CCE527A-CD47-F29E-A13C-DC0D71FDDA8E}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{B7FDB64F-9AC7-4934-AA63-B44F747FAFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7FDB64F-9AC7-4934-AA63-B44F747FAFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7FDB64F-9AC7-4934-AA63-B44F747FAFB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D550DC2-090B-8262-2BE6-0075DDF482E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D550DC2-090B-8262-2BE6-0075DDF482E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D550DC2-090B-8262-2BE6-0075DDF482E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D550DC2-090B-8262-2BE6-0075DDF482E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CCE527A-CD47-F29E-A13C-DC0D71FDDA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CCE527A-CD47-F29E-A13C-DC0D71FDDA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CCE527A-CD47-F29E-A13C-DC0D71FDDA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																	GlobalSection(MonoDevelopProperties) = preSolution
+																							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

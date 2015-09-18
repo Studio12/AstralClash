@@ -24,6 +24,8 @@ public var jumping : float;
 
 private var isGrounded : boolean = true;
 
+public var charVal : int;
+
 function Start () {
 
 }

@@ -64,19 +64,53 @@ public class MainMenu : MonoBehaviour
 		
 		}
 
+		if(Input.GetButtonDown("Submit")){
+
+			selectOption ();
+
+		}
+
+
+
 	}
 
-	public void selectionEffect ()
+	void selectionEffect ()
 	{
 
 		MenuOptions [selected].transform.localScale = new Vector2 (6f, 6f);
 
 	}
 
-	public void deSelect ()
+	void deSelect ()
 	{
 
 		MenuOptions [selected].transform.localScale = new Vector2 (5f, 5f);
 
 	}
+
+	void selectOption(){
+
+		//Option for Game Manager. Expandable easily.
+
+		GameManager.ChooseLevel(MenuOptions[selected].name);
+
+		//Option for now.
+//		switch (selected) {
+//		
+//		case 0:
+//			Application.LoadLevel("SingleDemo");
+//			break;
+//		case 1:
+//			Application.LoadLevel("MultiDemo");
+//			break;
+//		case 2:
+//			Application.Quit();
+//			break;
+//		default:
+//			break;
+//			
+//		}
+
+	}
+
 }
