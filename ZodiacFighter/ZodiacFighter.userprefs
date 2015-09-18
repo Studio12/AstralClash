@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Fighter.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Fighter.cs">
     <Files>
-      <File FileName="Assets\Fighter.js" Line="42" Column="9" />
-      <File FileName="Assets\AI.js" Line="27" Column="2" />
+      <File FileName="Assets\Fighter.cs" Line="85" Column="67" />
+      <File FileName="Assets\AI.cs" Line="12" Column="37" />
+      <File FileName="Assets\PlayerController.cs" Line="12" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
