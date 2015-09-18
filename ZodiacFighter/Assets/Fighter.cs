@@ -12,6 +12,7 @@ public class Fighter : MonoBehaviour {
 		public float recovery;
 		public float reach;
 		public float armor;
+		public float armorBreak;
 	}
 	
 	public float health;
@@ -58,14 +59,17 @@ public class Fighter : MonoBehaviour {
 		print("Whoosh");
 		armor = attack.armor;
 		cooldown = attack.recovery;
-		yield return new WaitForSeconds(attack.prep);
-		RaycastHit2D hit = Physics2D.Raycast(transform.position,transform.right, 5);
-		if(hit.collider != null && hit.collider != gameObject.GetComponent<Collider2D>())
-		{
-			print("Pow");
-			hit.collider.SendMessage("Damage", attack.damage);
-			hit.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * push,0), ForceMode2D.Impulse);
-			if(attack.projectile) Instantiate(attack.projectile, transform.position, transform.rotation); 
+		while (armor > 0) {
+			yield return new WaitForSeconds (attack.prep);
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, transform.right, 5);
+			if (hit.collider != null && hit.collider != gameObject.GetComponent<Collider2D> ()) {
+				print ("Pow");
+				hit.collider.SendMessage ("Damage", attack.damage);
+				hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
+				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (direction * push, 0), ForceMode2D.Impulse);
+				if (attack.projectile)
+					Instantiate (attack.projectile, transform.position, transform.rotation); 
+			}
 		}
 		armor = 0;
 	}
@@ -88,5 +92,10 @@ public class Fighter : MonoBehaviour {
 	void Damage (float amount)
 	{
 		health -= amount;
+	}
+
+	void ArmorDamage (float amount)
+	{
+		armor -= amount;
 	}
 }
