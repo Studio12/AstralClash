@@ -27,9 +27,11 @@ public class Fighter : MonoBehaviour {
 	
 	public float direction;
 
-	public bool jumping  = false;
+	public float jumping;
 	
 	private bool isGrounded = true;
+
+	public int playID;
 
 	// Use this for initialization
 	void Start () {
@@ -40,10 +42,12 @@ public class Fighter : MonoBehaviour {
 	void Update () {
 		transform.position += new Vector3(direction * speed * 0.25f,0.0f,0.0f);
 		transform.LookAt(transform.position + new Vector3(0,0,direction));
-		if(jumping && isGrounded)
+		if(jumping>0)
 		{
+			if(isGrounded){
 			GetComponent<Rigidbody2D>().velocity = new Vector3(0,jumpPower,0);
 			isGrounded = false;
+			}
 		}
 		if(cooldown > 0) cooldown -= Time.deltaTime;
 		Debug.DrawLine(transform.position, transform.position + transform.right * 1);

@@ -12,10 +12,57 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		fighter.direction = Input.GetAxis("Horizontal");
-		fighter.jumping = Input.GetButtonDown("Jump");
-		if(Input.GetButtonDown("Light Attack")) fighter.LightAttack();
-		if(Input.GetButtonDown("Medium Attack")) fighter.MediumAttack();
-		if(Input.GetButtonDown("Heavy Attack")) fighter.HeavyAttack();
+
+		switch(fighter.playID){
+
+		case 1:
+			fighter.direction = Input.GetAxis ("Horizontal1");
+			fighter.jumping = Input.GetAxis ("Jump1");
+			if (Input.GetButtonDown ("Light Attack1"))
+				fighter.LightAttack ();
+			if (Input.GetButtonDown ("Medium Attack1"))
+				fighter.MediumAttack ();
+			if (Input.GetButtonDown ("Heavy Attack1"))
+				fighter.HeavyAttack ();
+
+			break;
+
+		case 2:
+			fighter.direction = Input.GetAxis ("Horizontal2");
+			fighter.jumping = Input.GetAxis ("Jump2");
+			if (Input.GetButtonDown ("Light Attack2"))
+				fighter.LightAttack ();
+			if (Input.GetButtonDown ("Medium Attack2"))
+				fighter.MediumAttack ();
+			if (Input.GetButtonDown ("Heavy Attack2"))
+				fighter.HeavyAttack ();
+			break;
+
+		case 3:
+			fighter.direction = Input.GetAxis ("Horizontal3");
+			fighter.jumping = Input.GetAxis ("Jump3");
+			if (Input.GetButtonDown ("Light Attack3"))
+				fighter.LightAttack ();
+			if (Input.GetButtonDown ("Medium Attack3"))
+				fighter.MediumAttack ();
+			if (Input.GetButtonDown ("Heavy Attack3"))
+				fighter.HeavyAttack ();
+			break;
+
+		case 4:
+			fighter.direction = Input.GetAxis ("Horizontal4");
+			fighter.jumping = Input.GetAxis ("Jump4");
+			if (Input.GetButtonDown ("Light Attack4"))
+				fighter.LightAttack ();
+			if (Input.GetButtonDown ("Medium Attack4"))
+				fighter.MediumAttack ();
+			if (Input.GetButtonDown ("Heavy Attack4"))
+				fighter.HeavyAttack ();
+			break;
+
+		default:
+			break;
+
+		}
 	}
 }
