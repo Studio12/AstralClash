@@ -15,8 +15,9 @@ public class AI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		fighter.direction = (target.position - transform.position - (1.25f * transform.right)).normalized.x;
-		if(Physics.Raycast(transform.position,transform.right, 1.5f))
+		if(Physics.Raycast(transform.position,transform.right, 2f))
 		{
+			print("RADARADARADA");
 			switch(Random.Range(0,2)) {
 			case 0:
 				fighter.LightAttack();

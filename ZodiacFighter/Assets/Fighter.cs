@@ -31,6 +31,8 @@ public class Fighter : MonoBehaviour {
 	
 	private bool isGrounded = true;
 
+	public int playID;
+
 	// Use this for initialization
 	void Start () {
 	
