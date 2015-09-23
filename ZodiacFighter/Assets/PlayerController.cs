@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print (Input.GetAxis ("Jump1") > 0);
-
 		switch(fighter.playID){
 			
 		case 1:
