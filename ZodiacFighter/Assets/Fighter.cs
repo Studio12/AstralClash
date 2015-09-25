@@ -66,6 +66,7 @@ public class Fighter : MonoBehaviour {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, transform.right, 5);
 			if (hit.collider != null && hit.collider != gameObject.GetComponent<Collider2D> ()) {
 				print ("Pow from " + gameObject.name);
+				Instantiate (Resources.Load ("Hit"), hit.point, transform.rotation);
 				hit.collider.SendMessage ("Damage", attack.damage);
 				hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
 				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (direction * push, 0), ForceMode2D.Impulse);
