@@ -5,6 +5,11 @@ public class PlatformIndex : MonoBehaviour {
 
 	public GameObject[] platforms;
 	public float[] distances;
+	public int number;
+	public bool[] connection;
+	public bool visited;
+	public GameObject parObj;
+
 
 	// Use this for initialization
 	void Start () {
