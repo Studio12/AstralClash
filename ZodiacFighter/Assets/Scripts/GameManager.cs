@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour {
 
 	public static void ChooseLevel(string levelName){
 
+		if (levelName == "Quit") {
+		
+			Application.Quit();
+		
+		}
 		Application.LoadLevel (levelName);
 
 	}
