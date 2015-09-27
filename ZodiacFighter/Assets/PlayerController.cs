@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> origin/Tay_Branch
 		switch(fighter.playID){
 			
 		case 1:
