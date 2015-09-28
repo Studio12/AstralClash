@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour
 {
 
 	public GameObject[] MenuOptions;
+	public GameObject selector;
 	public int selected;
 	public int max;
 	public bool axisPressed;
@@ -27,7 +28,7 @@ public class MainMenu : MonoBehaviour
 		if (axisPressed == false) {
 			if (Input.GetAxis ("MenuDPad") < 0) {
 
-				deSelect ();
+			//	deSelect ();
 
 				if (selected == max) {
 
@@ -42,7 +43,7 @@ public class MainMenu : MonoBehaviour
 		
 			} else if (Input.GetAxis ("MenuDPad") > 0) {
 
-				deSelect ();
+			//	deSelect ();
 
 				if (selected == 0) {
 				
@@ -77,7 +78,7 @@ public class MainMenu : MonoBehaviour
 	void selectionEffect ()
 	{
 
-		MenuOptions [selected].transform.localScale = new Vector2 (6f, 6f);
+		selector.transform.position = MenuOptions [selected].transform.position;
 
 	}
 

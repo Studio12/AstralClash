@@ -13,33 +13,47 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		maxValue = character.GetComponent<Fighter> ().health;
+		maxValue = character.GetComponent<Fighter> ().maxHealth;
+		curValue = character.GetComponent<Fighter> ().health;
 		scaleMax = this.transform.localScale.x;
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-		curValue = character.GetComponent<Fighter> ().health;
-		propScale = curValue / maxValue;
-
-		if (curValue >= 0) {
-
-			if (this.name == "instaBar") {
+		if (curValue<=0) {
 		
-				this.transform.localScale = new Vector3 (scaleMax * propScale, this.transform.localScale.y, this.transform.localScale.z);
-		
-			} else if (this.name == "gradBar" && this.transform.localScale.x > scaleMax * propScale) {
-
-				this.transform.localScale = new Vector3 (this.transform.localScale.x - gradScaleSpeed, this.transform.localScale.y, this.transform.localScale.z);
-		
+			if (this.name == "gradBar") {
+				if (this.transform.localScale.x>0) {
+					this.transform.localScale = new Vector3 (this.transform.localScale.x - gradScaleSpeed, this.transform.localScale.y, this.transform.localScale.z);
+				}else{Destroy(this);}
+			}else{
+				Destroy (this);
 			}
-	
-		} else {
 		
-			this.transform.localScale = new Vector3 (0, this.transform.localScale.y, this.transform.localScale.z);
+		} else {
 
+			curValue = character.GetComponent<Fighter> ().health;
+			propScale = curValue / maxValue;
+
+			if (curValue >= 0) {
+
+				if (this.name == "instaBar") {
+		
+					this.transform.localScale = new Vector3 (scaleMax * propScale, this.transform.localScale.y, this.transform.localScale.z);
+		
+				} else if (this.name == "gradBar" && this.transform.localScale.x > scaleMax * propScale) {
+
+					this.transform.localScale = new Vector3 (this.transform.localScale.x - gradScaleSpeed, this.transform.localScale.y, this.transform.localScale.z);
+		
+				}
+	
+			} else {
+		
+				this.transform.localScale = new Vector3 (0, this.transform.localScale.y, this.transform.localScale.z);
+
+			}
 		}
 	}
 }

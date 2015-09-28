@@ -7,6 +7,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(Input.GetButtonDown ("ForceQuit")){
+			Application.Quit();
+		}
+
 	
 	}
 
@@ -23,10 +30,11 @@ public class GameManager : MonoBehaviour {
 
 		if (levelName == "Quit") {
 		
-			Application.Quit();
+			Application.Quit ();
 		
+		} else {
+			Application.LoadLevel (levelName);
 		}
-		Application.LoadLevel (levelName);
 
 	}
 
