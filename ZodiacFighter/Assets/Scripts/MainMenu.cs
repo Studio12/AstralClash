@@ -5,7 +5,11 @@ public class MainMenu : MonoBehaviour
 {
 
 	public GameObject[] MenuOptions;
+	public GameObject RegMenu;
+	public GameObject ControlsMenu;
 	public GameObject selector;
+	public Vector2 oldPos;
+	public Vector2 newPos;
 	public int selected;
 	public int max;
 	public bool axisPressed;
@@ -14,8 +18,9 @@ public class MainMenu : MonoBehaviour
 	void Start ()
 	{
 
+		oldPos = RegMenu.transform.position;
+		newPos = new Vector2 (5000, 0);
 		selected = 0;
-		max = 2;
 		selectionEffect ();
 		axisPressed = false;
 	
@@ -28,7 +33,7 @@ public class MainMenu : MonoBehaviour
 		if (axisPressed == false) {
 			if (Input.GetAxis ("MenuDPad") < 0) {
 
-			//	deSelect ();
+				print("Joystick working");
 
 				if (selected == max) {
 
@@ -71,15 +76,27 @@ public class MainMenu : MonoBehaviour
 
 		}
 
+		if (ControlsMenu.activeSelf == true && Input.GetButtonDown ("Cancel")) {
+		
+			ControlsMenu.SetActive(false);
+			selector.SetActive(true);
+			RegMenu.transform.position = oldPos;
+		
+		}
+
 
 
 	}
 
 	void selectionEffect ()
 	{
-
-		selector.transform.position = MenuOptions [selected].transform.position;
-
+		if (selected != 2) {
+			selector.transform.position = MenuOptions [selected].transform.position;
+		} else {
+		
+			selector.transform.position = new Vector2(MenuOptions [selected].transform.position.x, MenuOptions [selected].transform.position.y-1);
+		
+		}
 	}
 
 	void deSelect ()
@@ -91,26 +108,16 @@ public class MainMenu : MonoBehaviour
 
 	void selectOption(){
 
-		//Option for Game Manager. Expandable easily.
+		if (MenuOptions [selected].name == "Controls") {
+		
+			RegMenu.transform.position = newPos;
+			ControlsMenu.SetActive (true);
+			selector.SetActive(false);
+		
+		} else {
 
-		GameManager.ChooseLevel(MenuOptions[selected].name);
-
-		//Option for now.
-//		switch (selected) {
-//		
-//		case 0:
-//			Application.LoadLevel("SingleDemo");
-//			break;
-//		case 1:
-//			Application.LoadLevel("MultiDemo");
-//			break;
-//		case 2:
-//			Application.Quit();
-//			break;
-//		default:
-//			break;
-//			
-//		}
+			GameManager.ChooseLevel (MenuOptions [selected].name);
+		}
 
 	}
 
