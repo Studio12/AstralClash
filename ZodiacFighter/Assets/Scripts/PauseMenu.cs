@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour {
 
 		}
 
-		if (paused){
+		/*if (paused){
 
 			PauseUI.SetActive(true);
 			Time.timeScale = 0;
@@ -32,6 +32,8 @@ public class PauseMenu : MonoBehaviour {
 
 			PauseUI.SetActive(false);
 			Time.timeScale = 1;
-		}
+		}*/
+		PauseUI.SetActive(paused);
+		Time.timeScale = paused ? 0 : 1;
 	}
 }

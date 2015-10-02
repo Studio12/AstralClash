@@ -148,17 +148,20 @@ public class Fighter : MonoBehaviour
 		if (!armorBroken) {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, transform.right, attack.reach);
 			if (hit)
-				Debug.DrawLine (transform.position, hit.transform.position, Color.blue, 3);
-			if (hit.collider != null && hit.collider != gameObject.GetComponent<Collider2D> ()) {
+				Debug.DrawLine (transform.position, hit.transform.position, Color.green, 3);
+			if (hit.collider != null) {
 				print ("Pow from " + gameObject.name);
-				hit.collider.SendMessage ("Damage", attack.damage);
-				hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
-				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (direction * attack.knockback, 0), ForceMode2D.Impulse);
+				if(hit.collider.GetComponent<Fighter>())
+				{
+					hit.collider.SendMessage ("Damage", attack.damage);
+					hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
+				}
+				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (transform.right.x * attack.knockback, 0), ForceMode2D.Impulse);
 			}
 			if (attack.projectile)
 				Instantiate (attack.projectile, transform.position, transform.rotation);
 		}
-		print ("Attack ended");
+		print (gameObject.name + "'s attack ended");
 		armor = 0;
 		speed = tempSpeed;
 		attacking = false;
