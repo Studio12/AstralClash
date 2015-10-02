@@ -4,7 +4,8 @@ using System.Collections;
 public class AI : MonoBehaviour {
 
 	Fighter fighter;
-	
+	public float distance;
+	public float targetDist;
 	public Transform target;
 
 	// Use this for initialization
@@ -14,21 +15,26 @@ public class AI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Vector3.Distance (target.position, transform.position) > 1.5f) fighter.direction = (target.position - transform.position - (2f * transform.right)).normalized.x;
-		Debug.DrawLine(transform.position, transform.position + (target.position - transform.position - (2f * transform.right)), Color.red);
-		if(Physics.Raycast(transform.position,transform.right, 2f))
+		distance = Vector2.Distance (this.transform.position, target.transform.position);
+		if (distance > targetDist) {
+			fighter.direction = (target.position - transform.position - (1.25f * transform.right)).normalized.x;
+		} else {
+		
+			fighter.direction = 0;
+		
+		}
+
+		if(Physics2D.Raycast(transform.position,transform.right, 7f))
 		{
-			print("RADARADARADA");
-			switch(Random.Range(0,2)) {
-			case 0:
+			if(distance>3 && distance<7) {
 				fighter.LightAttack();
-				break;
-			case 1:
+			}else if(distance<=3){
+
 				fighter.MediumAttack();
-				break;
-			case 2:
+			}else{
+
 				fighter.HeavyAttack();
-				break;
+
 			}
 		}
 	}
