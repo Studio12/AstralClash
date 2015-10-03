@@ -16,6 +16,8 @@ public class Fighter : MonoBehaviour
 		public float armor;
 		public float armorBreak;
 		public float knockback;
+		public AudioClip[] voice;
+		public AudioClip hit;
 	}
 	
 	public float health;
@@ -125,6 +127,11 @@ public class Fighter : MonoBehaviour
 //		}
 //	
 //	}
+
+	void OnCollisionExit2D(Collision2D coll)
+	{
+		isGrounded = false;
+	}
 	
 	IEnumerator PerformAttack (Attack attack)
 	{
@@ -136,6 +143,11 @@ public class Fighter : MonoBehaviour
 		attacking = true;
 		cooldown = attack.recovery + attack.prep;
 		speed = 0;
+		if(attack.voice.Length > 0)
+		{
+			GetComponent<AudioSource> ().clip = attack.voice[Random.Range (0,attack.voice.Length)];
+			GetComponent<AudioSource> ().Play();
+		}
 		for (waitedTime=0; waitedTime<attack.prep; waitedTime+=.1f) {
 		
 			if(armor<=0){
@@ -156,6 +168,7 @@ public class Fighter : MonoBehaviour
 					hit.collider.SendMessage ("Damage", attack.damage);
 					hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
 				}
+				GetComponent<AudioSource> ().PlayOneShot(attack.hit);
 				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (transform.right.x * attack.knockback, 0), ForceMode2D.Impulse);
 			}
 			if (attack.projectile)
