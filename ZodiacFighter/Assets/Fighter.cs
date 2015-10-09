@@ -40,6 +40,8 @@ public class Fighter : MonoBehaviour
 
 	public bool blocking;
 	public bool attacking;
+	public bool AIJump;
+	public GameObject curPlatform;
 
 	// Use this for initialization
 	void Start ()
@@ -48,6 +50,7 @@ public class Fighter : MonoBehaviour
 		health = maxHealth;
 		dodgeCool = 0;
 		cooldown = 0;
+		AIJump = false;
 	
 	}
 	
@@ -74,7 +77,7 @@ public class Fighter : MonoBehaviour
 				}
 			
 			}
-			if(blocking==false && attacking == false){
+			if(blocking==false && attacking == false && !AIJump){
 				GetComponentInChildren<Animator>().SetBool("Block", false);
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (direction * speed * 0.25f, GetComponent<Rigidbody2D> ().velocity.y);
 				if(Time.timeScale>0){transform.LookAt (transform.position + new Vector3 (0, 0, direction));}
@@ -104,6 +107,9 @@ public class Fighter : MonoBehaviour
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 		isGrounded = true;
+		if (coll.gameObject.tag != "Player") {
+			curPlatform = coll.gameObject;
+		}
 		exJump = 1200;
 
 //		if (coll.gameObject.tag == "Player") {
