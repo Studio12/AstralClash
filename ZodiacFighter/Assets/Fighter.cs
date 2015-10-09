@@ -163,10 +163,10 @@ public class Fighter : MonoBehaviour
 				Debug.DrawLine (transform.position, hit.transform.position, Color.green, 3);
 			if (hit.collider != null) {
 				print ("Pow from " + gameObject.name);
-				if(hit.collider.GetComponent<Fighter>())
+				if(hit.collider.GetComponent<Fighter>() || hit.collider.GetComponent<CometBug>())
 				{
 					hit.collider.SendMessage ("Damage", attack.damage);
-					hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
+					if(hit.collider.GetComponent<Fighter>()) hit.collider.SendMessage ("ArmorDamage", attack.armorBreak);
 				}
 				GetComponent<AudioSource> ().PlayOneShot(attack.hit);
 				hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (transform.right.x * attack.knockback, 0), ForceMode2D.Impulse);

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CometBug : MonoBehaviour {
 
+	public float health = 5;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,9 +21,21 @@ public class CometBug : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if (coll.gameObject.GetComponent<Fighter> ()) {
-			coll.gameObject.SendMessage ("Damage", 5);
-			transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+		if (coll.gameObject.GetComponent<CometBug> ()) {
+			print ("Wink");
+			Physics2D.IgnoreCollision(GetComponent<Collider2D> (), coll.gameObject.GetComponent<Collider2D> ());
+			return;
 		}
+		else if (coll.gameObject.GetComponent<Fighter> ()) {
+			coll.gameObject.SendMessage ("Damage", 5);
+		}
+		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+	}
+
+	void Damage (float amount)
+	{
+		health -= amount;
+		if (health <= 0)
+			Destroy (gameObject);
 	}
 }
