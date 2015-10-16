@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StarPickup : MonoBehaviour {
 
-	public GameObject StarSpawner;
+	public StarSpawn StarSpawner;
 
 	void OnTriggerEnter2D(Collider2D coll){
 
@@ -12,7 +12,7 @@ public class StarPickup : MonoBehaviour {
 			if (coll.GetComponent<Fighter> ().stars < coll.GetComponent<Fighter> ().starMax) {
 				coll.GetComponent<Fighter> ().stars++;
 			}
-			StarSpawner.GetComponent<StarSpawn> ().curStars--;
+			StarSpawner.curStars--;
 			Destroy (this.gameObject);
 		}
 	}

@@ -1,10 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CometBug.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CBWaveManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\CBWaveManager.cs" Line="28" Column="24" />
-      <File FileName="Assets\Scripts\CometBug.cs" Line="27" Column="11" />
+      <File FileName="Assets\Scripts\CometBug.cs" Line="28" Column="78" />
+      <File FileName="Assets\Scripts\CBWaveManager.cs" Line="63" Column="15" />
       <File FileName="Assets\Fighter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StarPickup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StarSpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ChangeLevel.cs" Line="8" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
