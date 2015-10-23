@@ -45,32 +45,43 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AI.cs" />
-     <Compile Include="Assets\Fighter.cs" />
-     <Compile Include="Assets\PlayerController.cs" />
-     <Compile Include="Assets\RingOut.cs" />
+     <Compile Include="Assets\Art\Magma_Chamber\lavaAnim.cs" />
+     <Compile Include="Assets\CBWaveManager.cs" />
+     <Compile Include="Assets\CometBug.cs" />
+     <Compile Include="Assets\HeadCheck.cs" />
+     <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\AICentral.cs" />
      <Compile Include="Assets\Scripts\AIPathfind.cs" />
-     <Compile Include="Assets\Scripts\CBWaveManager.cs" />
-     <Compile Include="Assets\Scripts\ChangeLevel.cs" />
-     <Compile Include="Assets\Scripts\CometBug.cs" />
+     <Compile Include="Assets\Scripts\BullScript.cs" />
+     <Compile Include="Assets\Scripts\CharSelect.cs" />
      <Compile Include="Assets\Scripts\Death.cs" />
      <Compile Include="Assets\Scripts\DrawCameraViewport.cs" />
+     <Compile Include="Assets\Scripts\Fighter.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GroundCheck.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\Knife.cs" />
+     <Compile Include="Assets\Scripts\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Match.cs" />
+     <Compile Include="Assets\Scripts\MatchSettings.cs" />
      <Compile Include="Assets\Scripts\OptionsMenu.cs" />
+     <Compile Include="Assets\Scripts\ParticleSort.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PlatformIndex.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\RingOut.cs" />
      <Compile Include="Assets\Scripts\Round.cs" />
      <Compile Include="Assets\Scripts\RoundWin.cs" />
      <Compile Include="Assets\Scripts\SimpleCCD.cs" />
+     <Compile Include="Assets\Scripts\SpecialAttack.cs" />
      <Compile Include="Assets\Scripts\StarBar.cs" />
      <Compile Include="Assets\Scripts\StarPickup.cs" />
      <Compile Include="Assets\Scripts\StarSpawn.cs" />
      <Compile Include="Assets\Scripts\TestThing.cs" />
+     <Compile Include="Assets\Scripts\TextControlTemp.cs" />
      <Compile Include="Assets\Scripts\tempRot.cs" />
-     <Compile Include="Assets\TextControlTemp.cs" />
+     <Compile Include="Assets\pIconCorrect.cs" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 	public int selected;
 	public int max;
 	public bool axisPressed;
+	public GameObject MatchMenu;
 
 	// Use this for initialization
 	void Start ()
@@ -33,8 +34,6 @@ public class MainMenu : MonoBehaviour
 		if (axisPressed == false) {
 			if (Input.GetAxis ("MenuDPad") < 0) {
 
-				print("Joystick working");
-
 				if (selected == max) {
 
 					selected = 0;
@@ -47,8 +46,6 @@ public class MainMenu : MonoBehaviour
 				axisPressed = true;
 		
 			} else if (Input.GetAxis ("MenuDPad") > 0) {
-
-			//	deSelect ();
 
 				if (selected == 0) {
 				
@@ -99,24 +96,31 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
-	void deSelect ()
-	{
-
-		MenuOptions [selected].transform.localScale = new Vector2 (5f, 5f);
-
-	}
 
 	void selectOption(){
 
-		if (MenuOptions [selected].name == "Controls") {
+
+		switch (MenuOptions [selected].name) {
 		
+		case "Controls":
 			RegMenu.transform.position = newPos;
 			ControlsMenu.SetActive (true);
 			selector.SetActive(false);
-		
-		} else {
-
+			break;
+		case "singleplayer":
 			GameManager.ChooseLevel (MenuOptions [selected].name);
+			break;
+		case "multiplayer":
+			Camera.current.transform.position = new Vector3(80, 0, -10);
+			MatchMenu.SetActive(true);
+			this.gameObject.SetActive(false);
+			break;
+		case "Quit":
+			GameManager.ChooseLevel (MenuOptions [selected].name);
+			break;
+		default:
+			break;
+		
 		}
 
 	}

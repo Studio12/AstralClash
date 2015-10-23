@@ -27,7 +27,13 @@ public class HealthBar : MonoBehaviour {
 			if (this.name == "gradBar") {
 				if (this.transform.localScale.x>0) {
 					this.transform.localScale = new Vector3 (this.transform.localScale.x - gradScaleSpeed, this.transform.localScale.y, this.transform.localScale.z);
-				}else{Destroy(this);}
+				}else{
+
+					print(this.name);
+					print("Destroying parent");
+					Destroy(transform.parent.gameObject);
+
+				}
 			}else{
 				Destroy (this);
 			}
@@ -56,4 +62,6 @@ public class HealthBar : MonoBehaviour {
 			}
 		}
 	}
+
+
 }
