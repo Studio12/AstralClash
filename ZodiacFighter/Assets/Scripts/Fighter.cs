@@ -178,6 +178,11 @@ public class Fighter : MonoBehaviour
 					if(attack.knockback>0)hit.collider.GetComponentInChildren<Animator>().SetTrigger("Interrupt");
 					hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (facing * attack.knockback, attack.knockback), ForceMode2D.Impulse);
 				}
+				else if(hit.collider.gameObject.GetComponent<CometBug> ())
+				{
+					hit.collider.SendMessage ("Damage", attack.damage);
+					hit.collider.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (facing * attack.knockback, attack.knockback), ForceMode2D.Impulse);
+				}
 
 			}
 			if (attack.projectile)
